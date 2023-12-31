@@ -5,6 +5,7 @@ import Towary.Zamowienia;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+//klasa Main aktualnie służy do testowania kodu
 
 public class Main {
     public static void main(String[] args)
