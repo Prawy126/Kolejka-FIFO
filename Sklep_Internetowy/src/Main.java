@@ -1,31 +1,36 @@
 import Klient.Klient;
+import Sklep.Sklep;
 import Towary.MagazynSklapowy;
 import Towary.Zamowienia;
-
+import Klient.Sprzedawca;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 //klasa Main aktualnie służy do testowania kodu
 
 public class Main {
     public static void main(String[] args)
     {
-        Klient klient = new Klient("Piotr","Nowak",new Zamowienia("Jajka",10,2.5f));
-         System.out.println(klient.zwrocImie());
-         System.out.println(klient.zwrocNazwisko());
-        klient.wyswieltZamowienia();
-        klient.dodaZamowienie(new Zamowienia("Ser",1,0.523f));
-        klient.wyswieltZamowienia();
-        ArrayList<Zamowienia> list = new ArrayList<>();
-        list.add(new Zamowienia("Jajka",2,2.3f));
-        list.add(new Zamowienia("Buraki",2,0.3f));
-        list.add(new Zamowienia("Mleko",3,2.3f));
+        ArrayList<Zamowienia>list = new ArrayList();
+        Sprzedawca sprzedawca = new Sprzedawca("Piotr","Nowak","Hasło","login",123);
+        list.add(new Zamowienia("Ser",12,3,3.2f));
         MagazynSklapowy magazyn = new MagazynSklapowy(list);
-        System.out.println("------------------------------------------");
-        magazyn.zabierzProdukt(new Zamowienia("Jajka",2,2.3f));
-        magazyn.WypiszMagazyn();
+        Sklep biedronka = new Sklep("Biedronka",magazyn,sprzedawca);
+        Zamowienia zamowienia = new Zamowienia("Ser",2,3,3.2f);
+        Klient klient = new Klient("Marek","Markowski",zamowienia,"login","haslo", 12314);
 
+        biedronka.dodajDoKolejki(klient);
+        biedronka.dodajDoKolejki(klient);
 
+        try{
+            System.out.println(biedronka.doZaplaty());
+            System.out.println(biedronka.doZaplaty());
+            System.out.println(biedronka.doZaplaty());
+
+        }catch (NoSuchElementException e){
+            System.out.println("Kolejka jest już pusta");
+        }
 
 
     }

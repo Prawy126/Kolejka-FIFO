@@ -1,7 +1,8 @@
 package Klient;
 
 public abstract class AKlient implements IKlient{
-    String imie, nazwisko;
+    String imie, nazwisko, haslo, login;
+    float stanKonta;
 
 
     @Override

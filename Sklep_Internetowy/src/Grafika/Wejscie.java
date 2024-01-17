@@ -28,7 +28,10 @@ public class Wejscie extends JFrame {
         wejścieButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("C:\\Users\\micha\\OneDrive - Uniwersytet Rzeszowski\\Pulpit\\strona_internetowa\\nauka\\Projekt_Java\\Sklep_Internetowy\\src\\Grafika\\drzwi.wav");
+                playSound("src\\Dzwieki\\drzwi.wav");
+                dispose();
+                Logowanie logowanie = new Logowanie(1);
+                logowanie.setVisible(true);
             }
         });
     }
