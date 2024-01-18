@@ -6,7 +6,11 @@ import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Wejscie extends JFrame {
     private JPanel Wyswietlacz;
@@ -26,12 +30,18 @@ public class Wejscie extends JFrame {
 
 
         wejścieButton.addActionListener(new ActionListener() {
+
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                playSound("src\\Dzwieki\\drzwi.wav");
-                dispose();
                 Logowanie logowanie = new Logowanie(1);
-                logowanie.setVisible(true);
+                dispose();
+            }
+        });
+        nieWchodzęButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
 
@@ -52,7 +62,8 @@ public class Wejscie extends JFrame {
         } catch (Exception ex) {
             System.out.println("Error with playing sound.");
             ex.printStackTrace();
+
         }
     }
-    
+
 }

@@ -37,7 +37,8 @@ public class Logowanie2 extends JFrame{
                 KlientCSV zapis = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
                 if(zapis.czyIstniejeHaslo(haslo,login)){
                     JOptionPane.showMessageDialog(null,"POMYŚLNIE SIĘ ZALOGOWANO","LOGOWANIE", JOptionPane.INFORMATION_MESSAGE);
-
+                    dispose();
+                    GUISklep sklep = new GUISklep();
                 }else{
                     JOptionPane.showMessageDialog(null,"NIE UDAŁO SIĘ ZALOGOWAĆ","BŁĄD LOGOWANIA", JOptionPane.ERROR_MESSAGE);
 
