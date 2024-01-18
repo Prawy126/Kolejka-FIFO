@@ -9,7 +9,7 @@ public class Logowanie extends JFrame{
     private JButton logowanie;
     private JButton Wyjscie;
     private JLabel numer;
-    private JButton zalogujSięJakoSprzedawcaButton;
+    private JButton zarejestrujSięButton;
 
     public static void main(String[] args){
 

@@ -74,12 +74,12 @@
               <text value="Dowidzenia"/>
             </properties>
           </component>
-          <component id="3c15b" class="javax.swing.JButton" binding="zalogujSięJakoSprzedawcaButton" default-binding="true">
+          <component id="3c15b" class="javax.swing.JButton" binding="zarejestrujSięButton" default-binding="true">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Zaloguj się jako sprzedawca"/>
+              <text value="Zarejestruj się"/>
             </properties>
           </component>
         </children>
