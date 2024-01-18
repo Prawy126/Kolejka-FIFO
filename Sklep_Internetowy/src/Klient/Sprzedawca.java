@@ -26,6 +26,11 @@ public class Sprzedawca implements IKlient{
     }
 
     @Override
+    public float zwrocStanKonta() {
+        return this.kasa;
+    }
+
+    @Override
     public void zmienImie(String imie) {
         this.imie = imie;
     }
@@ -49,6 +54,23 @@ public class Sprzedawca implements IKlient{
     public float podajZawartoscKonta() {
         return this.kasa;
     }
+
+    @Override
+    public boolean poprawneHaslo(String haslo) {
+        if(haslo.equals(this.haslo)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public boolean poprawnyLogi(String login) {
+        if(this.login.equals(login))
+        return true;
+        else return false;
+    }
+
     public boolean czySprzedawca(){
         return true;
     }

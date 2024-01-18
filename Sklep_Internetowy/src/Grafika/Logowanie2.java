@@ -1,11 +1,13 @@
 package Grafika;
 
+import CSV.KlientCSV;
 import Klient.Klient;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Logowanie2 extends JFrame{
     private JPanel panel1;
@@ -32,6 +34,14 @@ public class Logowanie2 extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String login = Login.getText();
                 String haslo = Haslo.getText();
+                KlientCSV zapis = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
+                if(zapis.czyIstniejeHaslo(haslo,login)){
+                    JOptionPane.showMessageDialog(null,"POMYŚLNIE SIĘ ZALOGOWANO","LOGOWANIE", JOptionPane.INFORMATION_MESSAGE);
+
+                }else{
+                    JOptionPane.showMessageDialog(null,"NIE UDAŁO SIĘ ZALOGOWAĆ","BŁĄD LOGOWANIA", JOptionPane.ERROR_MESSAGE);
+
+                }
 
             }
         });

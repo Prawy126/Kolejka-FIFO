@@ -20,6 +20,7 @@ public class Logowanie extends JFrame{
         this.setContentPane(Ekran);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800,500);
+        this.setVisible(true);
 
         this.numer.setText("Aktualnie zajmujesz " + numer + " miejsce w kolejce");
 

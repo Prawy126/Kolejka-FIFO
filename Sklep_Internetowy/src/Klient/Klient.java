@@ -23,6 +23,22 @@ public class Klient extends AKlient implements IKlient{
     }
 
     @Override
+    public float zwrocStanKonta() {
+
+        return this.stanKonta;
+    }
+
+    @java.lang.Override
+    public void zmienImie(java.lang.String imie) {
+
+    }
+
+    @java.lang.Override
+    public void zmienNazwisko(java.lang.String nazwisko) {
+
+    }
+
+    @Override
     public String podajLogin() {
         return this.login;
     }
@@ -36,6 +52,22 @@ public class Klient extends AKlient implements IKlient{
     public float podajZawartoscKonta() {
         return this.stanKonta;
     }
+
+    @Override
+    public boolean poprawneHaslo(String haslo) {
+        if(this.haslo.equals(haslo)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public boolean poprawnyLogi(String login) {
+        if(this.login.equals(login)) return true;
+        else return false;
+    }
+
     public boolean czyKlient(){
         return true;
     }
