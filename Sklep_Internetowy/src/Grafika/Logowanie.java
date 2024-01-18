@@ -31,5 +31,20 @@ public class Logowanie extends JFrame{
             }
         });
 
+        logowanie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Logowanie2 logowanie2 = new Logowanie2();
+                dispose();
+            }
+        });
+        zarejestrujSięButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Rejestracja rejestracja = new Rejestracja();
+                dispose();
+            }
+        });
+
     }
 }

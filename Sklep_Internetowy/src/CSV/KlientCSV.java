@@ -86,5 +86,26 @@ public class KlientCSV {
 
         return false; // Jeśli nie znaleziono pasujących danych
     }
+    public boolean czyIstniejeKlient(Klient klient) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String savedLogin = parts[2];
+                    String savedHaslo = parts[3];
+
+                    if (savedLogin.equals(klient.podajLogin()) && savedHaslo.equals(klient.podajHaslo())) {
+                        return true; // Klient istnieje
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false; // Klient nie istnieje
+    }
+
 }
 

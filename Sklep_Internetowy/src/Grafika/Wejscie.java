@@ -34,7 +34,9 @@ public class Wejscie extends JFrame {
                 logowanie.setVisible(true);
             }
         });
+
     }
+
 
     private void playSound(String filePath) {
         try {
@@ -52,4 +54,5 @@ public class Wejscie extends JFrame {
             ex.printStackTrace();
         }
     }
+    
 }

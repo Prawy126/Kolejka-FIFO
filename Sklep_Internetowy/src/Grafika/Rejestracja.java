@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.text.NumberFormat;
 import java.text.ParseException;
 
 public class Rejestracja extends JFrame{
@@ -27,6 +26,7 @@ public class Rejestracja extends JFrame{
     private JLabel stanKonta;
     private JLabel haslo;
     private JTextField Nazwisko;
+    private JButton Cofnij;
 
     public static void main(String[] args){
         Rejestracja rejestracja = new Rejestracja();
@@ -51,8 +51,19 @@ public class Rejestracja extends JFrame{
             public void actionPerformed(ActionEvent e) {
 
                 Klient klient = new Klient(Imie.getText(),Nazwisko.getText(),null,Login.getText(),Haslo.getText(),parseStanKonta(StanKonta.getText()));
+
                 KlientCSV odczyt = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
-                odczyt.zapiszDoCSV(klient);
+                if(odczyt.czyIstniejeKlient(klient)){
+                    JOptionPane.showMessageDialog(null,"Posiadasz już konot","Konto",JOptionPane.INFORMATION_MESSAGE);
+                }else odczyt.zapiszDoCSV(klient);
+
+            }
+        });
+        Cofnij.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Logowanie logowanie = new Logowanie(1);
+                dispose();
             }
         });
 

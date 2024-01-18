@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Logowanie2 extends JFrame{
     private JPanel panel1;
@@ -16,13 +15,14 @@ public class Logowanie2 extends JFrame{
     private JPasswordField Haslo;
     private JButton zalogujSięButton;
     private JButton załóżKontoButton;
+    private JButton cofnij;
 
     public static void main(String[] args) {
         ArrayList<Klient> klient = null;
-        Logowanie2 logowanie2 = new Logowanie2(klient);
+        Logowanie2 logowanie2 = new Logowanie2();
 
     }
-    public Logowanie2(ArrayList<Klient> klienci){
+    public Logowanie2(){
         super("Logowanie");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(Wyswietlacz);
@@ -43,6 +43,20 @@ public class Logowanie2 extends JFrame{
 
                 }
 
+            }
+        });
+        cofnij.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Logowanie logowanie = new Logowanie(1);
+                dispose();
+            }
+        });
+        załóżKontoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Rejestracja rejestracja = new Rejestracja();
+                dispose();
             }
         });
     }

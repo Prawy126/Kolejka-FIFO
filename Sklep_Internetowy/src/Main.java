@@ -1,4 +1,5 @@
 import CSV.KlientCSV;
+import Grafika.Wejscie;
 import Klient.Klient;
 import Sklep.Sklep;
 import Towary.MagazynSklapowy;
@@ -35,12 +36,15 @@ public class Main {
             System.out.println("Kolejka jest już pusta");
         }
 
-        */
+
         KlientCSV zapis = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
         LinkedList<Klient> list = zapis.odczytajZCSV();
         for(Klient e: list){
             System.out.println(e.zwrocImie() + " " + e.zwrocNazwisko() + " " + e.zwrocStanKonta());
-        }
+        }*/
+
+        Wejscie wejscie = new Wejscie();
+        wejscie.setVisible(true);
 
     }
 }
