@@ -49,13 +49,19 @@ public class Rejestracja extends JFrame{
         zarejestrujSięButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try{
+                    Klient klient = new Klient(Imie.getText(),Nazwisko.getText(),null,Login.getText(),Haslo.getText(),parseStanKonta(StanKonta.getText()));
 
-                Klient klient = new Klient(Imie.getText(),Nazwisko.getText(),null,Login.getText(),Haslo.getText(),parseStanKonta(StanKonta.getText()));
+                    KlientCSV odczyt = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
+                    if(odczyt.czyIstniejeKlient(klient)){
+                        JOptionPane.showMessageDialog(null,"Posiadasz już konot","Konto",JOptionPane.INFORMATION_MESSAGE);
+                    }else odczyt.zapiszDoCSV(klient);
+                }catch (NumberFormatException a) {
+                    System.out.println("Nieprawidłowy format liczby: " + a.getMessage());
+                }catch (Exception a){
+                    System.out.println("Coś poszło nie tak");
+                }
 
-                KlientCSV odczyt = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
-                if(odczyt.czyIstniejeKlient(klient)){
-                    JOptionPane.showMessageDialog(null,"Posiadasz już konot","Konto",JOptionPane.INFORMATION_MESSAGE);
-                }else odczyt.zapiszDoCSV(klient);
 
             }
         });

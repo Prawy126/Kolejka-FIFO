@@ -11,9 +11,10 @@ public class Zamowienia implements ITowary {
         ustawIlosc(iloscTowaru);
         ustawCene(cena);
     }
-    public Zamowienia(String nazwaTowaru, float iloscTowaru){
+    public Zamowienia(String nazwaTowaru, float iloscTowaru, float cena){
         this.nazwaTowaru = nazwaTowaru;
         ustawIlosc(iloscTowaru);
+        ustawCene(cena);
     }
     public void ustawCene(float cena){
         this.cena = Math.abs(cena);

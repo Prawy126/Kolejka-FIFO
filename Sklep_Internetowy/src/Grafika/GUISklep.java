@@ -30,9 +30,9 @@ public class GUISklep extends JFrame {
     public static void main(String[] args){
         Klient klient = new Klient("tak","nie",null,"login","Haslo",0.0f);
         ArrayList<Zamowienia> towary = new ArrayList<>();
-        towary.add(new Zamowienia("ser",12.3f));
-        towary.add(new Zamowienia("ser2",12.3f));
-        towary.add(new Zamowienia("ser3",12.3f));
+        towary.add(new Zamowienia("ser",12.3f,12));
+        towary.add(new Zamowienia("ser2",12.3f,2));
+        towary.add(new Zamowienia("ser3",12.3f,2));
         MagazynSklapowy magazyn = new MagazynSklapowy(towary);
         GUISklep sklep = new GUISklep(klient, magazyn);
 
