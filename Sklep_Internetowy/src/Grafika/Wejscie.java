@@ -35,6 +35,7 @@ public class Wejscie extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Logowanie logowanie = new Logowanie(1);
+                playSound("src\\Dzwieki\\drzwi.wav");
                 dispose();
             }
         });

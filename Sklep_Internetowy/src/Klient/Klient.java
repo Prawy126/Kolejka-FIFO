@@ -8,7 +8,10 @@ public class Klient extends AKlient implements IKlient{
     public Klient(String imie, String nazwisko,Zamowienia zamowienia, String login, String haslo, float stanKonta){
         this.imie=imie;
         this.nazwisko = nazwisko;
-        list.add(zamowienia);
+        if(zamowienia!=null){
+            list.add(zamowienia);
+        }
+
         this.login = login;
         this.haslo = haslo;
         this.stanKonta = stanKonta;

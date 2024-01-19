@@ -1,6 +1,6 @@
 package Towary;
 
-public class Zamowienia implements ITowayry{
+public class Zamowienia implements ITowary {
 
     private float wagaTowaru, iloscTowaru, cena;
 

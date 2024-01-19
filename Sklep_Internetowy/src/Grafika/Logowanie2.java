@@ -38,7 +38,7 @@ public class Logowanie2 extends JFrame{
                 if(zapis.czyIstniejeHaslo(haslo,login)){
                     JOptionPane.showMessageDialog(null,"POMYŚLNIE SIĘ ZALOGOWANO","LOGOWANIE", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
-                    GUISklep sklep = new GUISklep();
+                    //GUISklep sklep = new GUISklep();
                 }else{
                     JOptionPane.showMessageDialog(null,"NIE UDAŁO SIĘ ZALOGOWAĆ","BŁĄD LOGOWANIA", JOptionPane.ERROR_MESSAGE);
 
