@@ -50,8 +50,8 @@ public class Kasa extends JFrame{
 
         java.util.Timer timer = new Timer();
         Random random = new Random();
-        int interwal = (random.nextInt(3)+1) * 1000; // Interwał w milisekundach (3 minuty i 52 sekundy)
-        int lista = random.nextInt(3);
+        int interwal = (random.nextInt(5)+1) * 1000; // Interwał w milisekundach (3 minuty i 52 sekundy)
+        int lista = random.nextInt(20);
 
         timer.scheduleAtFixedRate(new TimerTask() {
             int lista2 = lista;
