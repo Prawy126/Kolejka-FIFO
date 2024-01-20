@@ -92,7 +92,7 @@ public class Kasa extends JFrame{
                 if(klient.zwrocStanKonta()>=klient.ileDoZaplaty()){
                     JOptionPane.showMessageDialog(null,"Transakcja udana","Wszystko poszło pomyślnie",JOptionPane.INFORMATION_MESSAGE);
                     klient.odejmijZKonta(klient.ileDoZaplaty());
-                    KlientCSV.updateKlientAccount(klient.podajLogin(),klient.podajZawartoscKonta(),"src\\BazaDanychKlientow.csv");
+                    KlientCSV.updateKlientAccount(klient.podajLogin(),klient.podajZawartoscKonta(),"src\\CSV\\BazaDanychKlientow.csv");
                     JOptionPane.showMessageDialog(null,"Aktualny stan konta " + klient.zwrocStanKonta(),"Ile na koncie", JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(null,"Za mało pieniędzy na koncie","Transakcja nie udana",JOptionPane.ERROR_MESSAGE);

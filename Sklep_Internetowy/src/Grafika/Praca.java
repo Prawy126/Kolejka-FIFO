@@ -1,5 +1,6 @@
 package Grafika;
 
+import CSV.KlientCSV;
 import Klient.Klient;
 import Towary.MagazynSklapowy;
 import Towary.Zamowienia;
@@ -28,7 +29,7 @@ public class Praca extends JFrame{
         towary.add(new Zamowienia("ser",12.3f, 21));
         towary.add(new Zamowienia("ser2",12.3f,32));
         towary.add(new Zamowienia("ser3",12.3f,2));
-        Klient[] klient = {new Klient("tak","nie",null,"login","Haslo",0.0f),new Klient("tak","nie",null,"login","Haslo",0.0f)};
+        Klient[] klient = {new Klient("tak","nie",null,"login","Haslo",2313.0f),new Klient("tak","nie",null,"login","Haslo",312343.312f)};
         MagazynSklapowy magazyn = new MagazynSklapowy(towary);
         klient[0].dodaZamowienie(towary.get(1));
         klient[0].dodaZamowienie(towary.get(2));
@@ -77,9 +78,10 @@ public class Praca extends JFrame{
                 if(klient[currentIndex].ileDoZaplaty()<=klient[currentIndex].zwrocStanKonta()){
 
                     JOptionPane.showMessageDialog(null,"Wszystko poszło pomyślnie","Transakcja zakończona pomyślnie",JOptionPane.INFORMATION_MESSAGE);
-
+                    KlientCSV.updateKlientAccount(sprzedawca.podajLogin(),klient[currentIndex].ileDoZaplaty(),"src\\CSV\\BazaDanychSprzedawca.csv");
+                    KlientCSV.updateKlientAccount(klient[currentIndex].podajLogin(),klient[currentIndex].ileDoZaplaty(),"src\\CSV\\BazaDanychKlientow.csv");
                 }else{
-                    JOptionPane.showMessageDialog(null,"Wszystko poszło pomyślnie","Transakcja zakończona pomyślnie",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Za mało pieniędzy na koncie","Transakcja zakończona błędem",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
