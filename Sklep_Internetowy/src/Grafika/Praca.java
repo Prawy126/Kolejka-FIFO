@@ -1,6 +1,7 @@
 package Grafika;
 
 import CSV.KlientCSV;
+import Dzwieki.MusicPlayerConsole;
 import Klient.Klient;
 import Towary.MagazynSklapowy;
 import Towary.Zamowienia;
@@ -45,7 +46,8 @@ public class Praca extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 600);
         this.setVisible(true);
-
+        MusicPlayerConsole muzyka = new MusicPlayerConsole();
+        muzyka.playMusicLoop();
         ImieNazwisko.setText(sprzedawca.zwrocImie());
         liczIleDoZapłatyButton.setEnabled(true);
         ArrayList<Zamowienia> paragon = klient[currentIndex].zwrocZamowienia();
@@ -133,6 +135,7 @@ public class Praca extends JFrame{
         koniecPracyButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                muzyka.stopMusic();
                 dispose();
             }
         });

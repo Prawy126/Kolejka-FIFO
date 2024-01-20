@@ -1,4 +1,5 @@
 import CSV.KlientCSV;
+import Dzwieki.MusicPlayerConsole;
 import Grafika.Wejscie;
 import Klient.Klient;
 import Sklep.Sklep;
@@ -39,6 +40,7 @@ public class Main {
         }
         Wejscie wejscie = new Wejscie(magazynSklapowy,klienci);
         wejscie.setVisible(true);
+        //Test2 test2 = new Test2();
 
     }
 }

@@ -40,7 +40,7 @@ public class Logowanie2 extends JFrame{
                     Klient klient = KlientCSV.findClientByLogin(login,"src\\CSV\\BazaDanychKlientow.csv");
                     //tutaj otwiera się sklep
                     //GUISklep sklep = new GUISklep();
-                    GUISklep sklep = new GUISklep(numerKolejki,klient,magazynSklapowy);
+                    GUISklep sklep = new GUISklep(numerKolejki,klient,magazynSklapowy,klienci);
                 }else if(sprzedawca.czyIstniejeHaslo(haslo,login))
                 {
                     Sprzedawca sprzedawca1 = KlientCSV.findSprzedawcaByLogin(login,"src\\CSV\\BazaDanychSprzedawca.csv");

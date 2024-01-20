@@ -1,23 +1,18 @@
 package Grafika;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import CSV.KlientCSV;
+import Dzwieki.MusicPlayerConsole;
 import Klient.Klient;
 import Towary.MagazynSklapowy;
-import Towary.Zamowienia;
 
 
 public class Kasa extends JFrame{
@@ -25,31 +20,19 @@ public class Kasa extends JFrame{
     private JButton zapłaćKartąButton;
     private JButton zrezygnujZZakupówButton;
     private JLabel Kolejka;
-
-    public static void main(String[] args) {
-
-
-        /*ArrayList<Zamowienia> towary = new ArrayList<>();
-        towary.add(new Zamowienia("ser",12.3f, 21));
-        towary.add(new Zamowienia("ser2",12.3f,32));
-        towary.add(new Zamowienia("ser3",12.3f,2));
-        Klient klient = new Klient("tak","nie",null,"login","Haslo",0.0f);
-        MagazynSklapowy magazyn = new MagazynSklapowy(towary);
-        klient.dodaZamowienie(towary.get(1));
-        klient.dodaZamowienie(towary.get(2));
+    private JButton cofnijButton;
 
 
-        Kasa kasa = new Kasa(klient);*/
-    }
 
-    public Kasa(Klient klient,int numerKolejki){
+    public Kasa(Klient klient, int numerKolejki, MagazynSklapowy magazynSklapowy,Klient[] klienci){
         super("Kasa");
         this.setContentPane(Wyswietlacz);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,600);
         this.setVisible(true);
 
-
+        MusicPlayerConsole muzyka = new MusicPlayerConsole();
+        muzyka.playMusicLoop();
         Timer timer = new Timer();
         Random random = new Random();
         int interwal = (random.nextInt(5)+1) * 1000; // Interwał w milisekundach (3 minuty i 52 sekundy)
@@ -83,6 +66,7 @@ public class Kasa extends JFrame{
             @Override
             public void windowClosing(WindowEvent e) {
                 timer.cancel(); // Zatrzymaj zadanie Timera
+                muzyka.stopMusic();
             }
 
         });
@@ -102,10 +86,20 @@ public class Kasa extends JFrame{
         zrezygnujZZakupówButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                timer.cancel();
+                muzyka.stopMusic();
                 dispose();
+
             }
         });
-
+        cofnijButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GUISklep guiSklep = new GUISklep(numerKolejki,klient,magazynSklapowy,klienci);
+                dispose();
+                muzyka.stopMusic();
+            }
+        });
 
     }
 }
