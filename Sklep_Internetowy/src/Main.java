@@ -30,6 +30,13 @@ public class Main {
         klienci[0].dodaZamowienie(lista.get(0));
         klienci[2].dodaZamowienie(lista.get(1));
         klienci[3].dodaZamowienie(lista.get(2));
+        Random random = new Random();
+        int pomoc = random.nextInt(3);
+        for(int a = 0; a<6;a++){
+            for(int j = 0;j<=pomoc;j++){
+                klienci[a].dodaZamowienie(lista.get(j));
+            }
+        }
         Wejscie wejscie = new Wejscie(magazynSklapowy,klienci);
         wejscie.setVisible(true);
 

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import CSV.KlientCSV;
 import Klient.Klient;
 import Towary.MagazynSklapowy;
 import Towary.Zamowienia;
@@ -89,6 +91,9 @@ public class Kasa extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if(klient.zwrocStanKonta()>=klient.ileDoZaplaty()){
                     JOptionPane.showMessageDialog(null,"Transakcja udana","Wszystko poszło pomyślnie",JOptionPane.INFORMATION_MESSAGE);
+                    klient.odejmijZKonta(klient.ileDoZaplaty());
+                    KlientCSV.updateKlientAccount(klient.podajLogin(),klient.podajZawartoscKonta(),"src\\BazaDanychKlientow.csv");
+                    JOptionPane.showMessageDialog(null,"Aktualny stan konta " + klient.zwrocStanKonta(),"Ile na koncie", JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(null,"Za mało pieniędzy na koncie","Transakcja nie udana",JOptionPane.ERROR_MESSAGE);
                 }

@@ -82,6 +82,11 @@ public class Klient extends AKlient implements IKlient{
         return this;
     }
 
+    @Override
+    public void odejmijZKonta(float kwota) {
+        this.stanKonta -=kwota;
+    }
+
     public boolean czyKlient(){
         return true;
     }

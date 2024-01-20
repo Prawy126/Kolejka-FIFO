@@ -156,6 +156,48 @@ public class KlientCSV {
         // Jeśli nie znaleziono klienta, zwróć null
         return null;
     }
+    public static void updateKlientAccount(String loginToUpdate, float newAccountValue, String filePath) {
+        List<String> lines = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String imie = parts[0];
+                    String nazwisko = parts[1];
+                    String login = parts[2];
+                    String haslo = parts[3];
+                    float stanKonta = Float.parseFloat(parts[4]);
+
+                    // Sprawdź, czy login jest zgodny z loginem do zaktualizowania
+                    if (loginToUpdate.equals(login)) {
+                        // Zaktualizuj stan konta na nową wartość
+                        stanKonta = newAccountValue;
+                    }
+
+                    // Tworzenie nowej linii z aktualnymi danymi
+                    String updatedLine = String.join(",", imie, nazwisko, login, haslo, String.valueOf(stanKonta));
+                    lines.add(updatedLine);
+                } else {
+                    // Jeśli linia ma niewłaściwy format, dodaj ją bez zmian
+                    lines.add(line);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (String updatedLine : lines) {
+                writer.write(updatedLine);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 }
+}
+
 

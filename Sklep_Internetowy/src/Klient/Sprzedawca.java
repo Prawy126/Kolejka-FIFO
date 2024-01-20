@@ -85,6 +85,11 @@ public class Sprzedawca implements IKlient{
         return null;
     }
 
+    @Override
+    public void odejmijZKonta(float kwota) {
+        this.kasa+=kwota;
+    }
+
     public boolean czySprzedawca(){
         return true;
     }

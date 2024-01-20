@@ -17,4 +17,5 @@ public interface IKlient {
      public boolean poprawnyLogi(String login);
      public ArrayList<Zamowienia> zwrocZamowienia();
      public Klient zwroc();
+     public void odejmijZKonta(float kwota);
 }
