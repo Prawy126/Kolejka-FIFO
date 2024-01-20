@@ -27,7 +27,7 @@ public class Kasa extends JFrame{
     public static void main(String[] args) {
 
 
-        ArrayList<Zamowienia> towary = new ArrayList<>();
+        /*ArrayList<Zamowienia> towary = new ArrayList<>();
         towary.add(new Zamowienia("ser",12.3f, 21));
         towary.add(new Zamowienia("ser2",12.3f,32));
         towary.add(new Zamowienia("ser3",12.3f,2));
@@ -37,10 +37,10 @@ public class Kasa extends JFrame{
         klient.dodaZamowienie(towary.get(2));
 
 
-        Kasa kasa = new Kasa(klient);
+        Kasa kasa = new Kasa(klient);*/
     }
 
-    public Kasa(Klient klient){
+    public Kasa(Klient klient,int numerKolejki){
         super("Kasa");
         this.setContentPane(Wyswietlacz);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,13 +48,13 @@ public class Kasa extends JFrame{
         this.setVisible(true);
 
 
-        java.util.Timer timer = new Timer();
+        Timer timer = new Timer();
         Random random = new Random();
         int interwal = (random.nextInt(5)+1) * 1000; // Interwał w milisekundach (3 minuty i 52 sekundy)
-        int lista = random.nextInt(20);
+
 
         timer.scheduleAtFixedRate(new TimerTask() {
-            int lista2 = lista;
+            int lista2 = numerKolejki;
             @Override
             public void run() {
 
@@ -87,7 +87,7 @@ public class Kasa extends JFrame{
         zapłaćKartąButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(klient.zwrocStanKonta()==klient.ileDoZaplaty()){
+                if(klient.zwrocStanKonta()>=klient.ileDoZaplaty()){
                     JOptionPane.showMessageDialog(null,"Transakcja udana","Wszystko poszło pomyślnie",JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(null,"Za mało pieniędzy na koncie","Transakcja nie udana",JOptionPane.ERROR_MESSAGE);

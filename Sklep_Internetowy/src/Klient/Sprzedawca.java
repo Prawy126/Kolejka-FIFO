@@ -80,6 +80,11 @@ public class Sprzedawca implements IKlient{
         return null;
     }
 
+    @Override
+    public Klient zwroc() {
+        return null;
+    }
+
     public boolean czySprzedawca(){
         return true;
     }

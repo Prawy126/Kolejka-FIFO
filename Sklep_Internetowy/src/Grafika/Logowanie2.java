@@ -2,6 +2,8 @@ package Grafika;
 
 import CSV.KlientCSV;
 import Klient.Klient;
+import Klient.Sprzedawca;
+import Towary.MagazynSklapowy;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,12 +19,8 @@ public class Logowanie2 extends JFrame{
     private JButton załóżKontoButton;
     private JButton cofnij;
 
-    public static void main(String[] args) {
-        ArrayList<Klient> klient = null;
-        Logowanie2 logowanie2 = new Logowanie2();
 
-    }
-    public Logowanie2(){
+    public Logowanie2(int numerKolejki, MagazynSklapowy magazynSklapowy,Klient[] klienci){
         super("Logowanie");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(Wyswietlacz);
@@ -39,13 +37,16 @@ public class Logowanie2 extends JFrame{
                 if(zapis.czyIstniejeHaslo(haslo,login)){
                     JOptionPane.showMessageDialog(null,"POMYŚLNIE SIĘ ZALOGOWANO","LOGOWANIE", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
+                    Klient klient = KlientCSV.findClientByLogin(login,"src\\CSV\\BazaDanychKlientow.csv");
                     //tutaj otwiera się sklep
                     //GUISklep sklep = new GUISklep();
+                    GUISklep sklep = new GUISklep(numerKolejki,klient,magazynSklapowy);
                 }else if(sprzedawca.czyIstniejeHaslo(haslo,login))
                 {
+                    Sprzedawca sprzedawca1 = KlientCSV.findSprzedawcaByLogin(login,"src\\CSV\\BazaDanychSprzedawca.csv");
                     JOptionPane.showMessageDialog(null,"POMYŚLNIE SIĘ ZALOGOWANO","LOGOWANIE", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
-                    //tutaj otwiera się okno dla sprzedawcy
+                    Praca kasa = new Praca(klienci,sprzedawca1);
                 }
                 else{
 
@@ -59,14 +60,14 @@ public class Logowanie2 extends JFrame{
         cofnij.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Logowanie logowanie = new Logowanie(1);
+                Logowanie logowanie = new Logowanie(numerKolejki,magazynSklapowy,klienci);
                 dispose();
             }
         });
         załóżKontoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Rejestracja rejestracja = new Rejestracja();
+                Rejestracja rejestracja = new Rejestracja(numerKolejki,magazynSklapowy,klienci);
                 dispose();
             }
         });

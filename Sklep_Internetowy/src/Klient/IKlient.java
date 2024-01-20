@@ -16,4 +16,5 @@ public interface IKlient {
      public boolean poprawneHaslo(String haslo);
      public boolean poprawnyLogi(String login);
      public ArrayList<Zamowienia> zwrocZamowienia();
+     public Klient zwroc();
 }

@@ -106,6 +106,56 @@ public class KlientCSV {
 
         return false; // Klient nie istnieje
     }
+    public static Klient findClientByLogin(String loginToFind, String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String imie = parts[0];
+                    String nazwisko = parts[1];
+                    String login = parts[2];
+                    String haslo = parts[3];
+                    float stanKonta = Float.parseFloat(parts[4]);
+
+                    // Sprawdź, czy login jest zgodny z poszukiwanym loginem
+                    if (loginToFind.equals(login)) {
+                        return new Klient(imie, nazwisko, null, login, haslo, stanKonta);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Jeśli nie znaleziono klienta, zwróć null
+        return null;
+    }
+    public static Sprzedawca findSprzedawcaByLogin(String loginToFind, String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String imie = parts[0];
+                    String nazwisko = parts[1];
+                    String login = parts[2];
+                    String haslo = parts[3];
+                    float stanKonta = Float.parseFloat(parts[4]);
+
+                    // Sprawdź, czy login jest zgodny z poszukiwanym loginem
+                    if (loginToFind.equals(login)) {
+                        return new Sprzedawca(imie, nazwisko, haslo, login, stanKonta);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Jeśli nie znaleziono klienta, zwróć null
+        return null;
+    }
 
 }
 

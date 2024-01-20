@@ -2,6 +2,7 @@ package Grafika;
 
 import CSV.KlientCSV;
 import Klient.Klient;
+import Towary.MagazynSklapowy;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -28,11 +29,8 @@ public class Rejestracja extends JFrame{
     private JTextField Nazwisko;
     private JButton Cofnij;
 
-    public static void main(String[] args){
-        Rejestracja rejestracja = new Rejestracja();
 
-    }
-    public Rejestracja(){
+    public Rejestracja(int numerKolejki, MagazynSklapowy magazynSklapowy, Klient[] klienci){
         super("Rejestracja");
         this.setSize(600,600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,10 +49,13 @@ public class Rejestracja extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String imie = Imie.getText();
                 String nazwisko = Nazwisko.getText();
-                haslo
-                if(haslo.getText().equals(passwordField2)&&!(imie.isEmpty()&&){
+                String login = Login.getText();
+                String stanKonta = StanKonta.getText();
+
+                if(haslo.getText().equals(passwordField2)&&!(imie.isEmpty()||login.isEmpty()||nazwisko.isEmpty()||stanKonta.isEmpty())){
+                    float stanKontaf = Float.valueOf(StanKonta.getText());
                     try{
-                        Klient klient = new Klient(Imie.getText(),Nazwisko.getText(),null,Login.getText(),Haslo.getText(),parseStanKonta(StanKonta.getText()));
+                        Klient klient = new Klient(imie,nazwisko,null,login,haslo.getText(),stanKontaf);
 
                         KlientCSV odczyt = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
                         if(odczyt.czyIstniejeKlient(klient)){
@@ -65,6 +66,9 @@ public class Rejestracja extends JFrame{
                     }catch (Exception a){
                         System.out.println("Coś poszło nie tak");
                     }
+                }else if(imie.isEmpty()||login.isEmpty()||nazwisko.isEmpty()||stanKonta.isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Nie uzupłniono wszystkich pól","ERROR",JOptionPane.ERROR_MESSAGE);
+
                 }else {
                     JOptionPane.showMessageDialog(null,"Hasła nie są takeie same","ERROR",JOptionPane.ERROR_MESSAGE);
                 }
@@ -77,7 +81,7 @@ public class Rejestracja extends JFrame{
         Cofnij.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Logowanie logowanie = new Logowanie(1);
+                Logowanie logowanie = new Logowanie(numerKolejki,magazynSklapowy,klienci);
                 dispose();
             }
         });

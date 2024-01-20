@@ -1,5 +1,8 @@
 package Grafika;
 
+import Klient.Klient;
+import Towary.MagazynSklapowy;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -9,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,24 +21,22 @@ public class Wejscie extends JFrame {
     private JButton wejścieButton;
     private JButton nieWchodzęButton;
 
-    public static void main(String[] args) {
-        Wejscie wejscie = new Wejscie();
-        wejscie.setVisible(true);
-    }
 
-    public Wejscie() {
+
+    public Wejscie(MagazynSklapowy magazynSklapowy, Klient[] klienci) {
+
         super("Sklep Internetowy");
         this.setContentPane(this.Wyswietlacz);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800, 500);
-
+        Random random = new Random();
 
         wejścieButton.addActionListener(new ActionListener() {
 
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Logowanie logowanie = new Logowanie(1);
+                Logowanie logowanie = new Logowanie(random.nextInt(20)+1,magazynSklapowy,klienci);
                 playSound("src\\Dzwieki\\drzwi.wav");
                 dispose();
             }

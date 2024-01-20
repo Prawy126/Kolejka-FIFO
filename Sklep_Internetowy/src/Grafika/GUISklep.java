@@ -27,17 +27,10 @@ public class GUISklep extends JFrame {
     private JComboBox comboBox2;
     private JButton dodajDoListyButton;
 
-    public static void main(String[] args){
-        Klient klient = new Klient("tak","nie",null,"login","Haslo",0.0f);
-        ArrayList<Zamowienia> towary = new ArrayList<>();
-        towary.add(new Zamowienia("ser",12.3f,12));
-        towary.add(new Zamowienia("ser2",12.3f,2));
-        towary.add(new Zamowienia("ser3",12.3f,2));
-        MagazynSklapowy magazyn = new MagazynSklapowy(towary);
-        GUISklep sklep = new GUISklep(klient, magazyn);
 
-    }
-    public GUISklep(Klient klient, MagazynSklapowy magazyn){
+
+
+    public GUISklep(int numerKolejki,Klient klient, MagazynSklapowy magazyn){
         super("Sklep Internetowy");
         this.setContentPane(Wyswietlacz);
         this.setSize(600,600);
@@ -76,24 +69,19 @@ public class GUISklep extends JFrame {
                     String pomoc = comboBox2.getSelectedItem().toString();
                     float liczba = Float.parseFloat(pomoc);
                     String nazwa = (String)comboBox1.getSelectedItem();
-                    int cena = 0;
-                    switch (nazwa){
-                        case "ser":
-                            cena = 10;
-                            break;
-                    }
+                    int cena = 10;
                     Zamowienia zamowienia = new Zamowienia(nazwa,liczba,cena);
                     System.out.println(comboBox1.getSelectedItem() + " " + comboBox2.getSelectedItem());
                     klient.dodaZamowienie(zamowienia);
                     klient.wyswieltZamowienia();
-                    System.out.println(klient.ileDoZaplaty());
+                    System.out.println(klient.ileDoZaplaty()+"\n"+klient.zwrocStanKonta());
                     StanKonta.setText(String.valueOf(klient.ileDoZaplaty()));
                 }
             });
             przejźDoKasyButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    Kasa kasa = new Kasa(klient,numerKolejki);
                 }
             });
 

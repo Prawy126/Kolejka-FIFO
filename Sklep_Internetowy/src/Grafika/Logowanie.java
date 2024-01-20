@@ -1,5 +1,8 @@
 package Grafika;
 
+import Klient.Klient;
+import Towary.MagazynSklapowy;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +18,7 @@ public class Logowanie extends JFrame{
 
     }
 
-    public Logowanie(int numer){
+    public Logowanie(int numer, MagazynSklapowy magazynSklapowy, Klient[] klienci){
         super("Sklep Internetowy");
         this.setContentPane(Ekran);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,14 +37,14 @@ public class Logowanie extends JFrame{
         logowanie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Logowanie2 logowanie2 = new Logowanie2();
+                Logowanie2 logowanie2 = new Logowanie2(numer, magazynSklapowy,klienci);
                 dispose();
             }
         });
         zarejestrujSięButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Rejestracja rejestracja = new Rejestracja();
+                Rejestracja rejestracja = new Rejestracja(numer,magazynSklapowy,klienci);
                 dispose();
             }
         });

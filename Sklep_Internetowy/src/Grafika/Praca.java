@@ -49,6 +49,7 @@ public class Praca extends JFrame{
         liczIleDoZapłatyButton.setEnabled(true);
         ArrayList<Zamowienia> paragon = klient[currentIndex].zwrocZamowienia();
         Object[][] data = new Object[paragon.size()][3];
+        klient[currentIndex].wyswieltZamowienia();
         for (int j = 0; j < paragon.size(); j++) {
             Zamowienia zamowienie = paragon.get(j);
             data[j][0] = zamowienie.nazwaTowaru();
@@ -125,6 +126,12 @@ public class Praca extends JFrame{
                 liczIleDoZapłatyButton.setEnabled(false);
                 Koszt.setText(String.valueOf(klient[currentIndex].ileDoZaplaty()));
                 skasujKlientaButton.setEnabled(true);
+            }
+        });
+        koniecPracyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
 

@@ -77,6 +77,11 @@ public class Klient extends AKlient implements IKlient{
         return list;
     }
 
+    @Override
+    public Klient zwroc() {
+        return this;
+    }
+
     public boolean czyKlient(){
         return true;
     }
@@ -90,4 +95,5 @@ public class Klient extends AKlient implements IKlient{
         }
         return cena;
     }
+
 }
