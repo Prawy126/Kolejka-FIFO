@@ -35,11 +35,21 @@ public class Logowanie2 extends JFrame{
                 String login = Login.getText();
                 String haslo = Haslo.getText();
                 KlientCSV zapis = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
+                KlientCSV sprzedawca = new KlientCSV("src\\CSV\\BazaDanychSprzedawca.csv");
                 if(zapis.czyIstniejeHaslo(haslo,login)){
                     JOptionPane.showMessageDialog(null,"POMYŚLNIE SIĘ ZALOGOWANO","LOGOWANIE", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
+                    //tutaj otwiera się sklep
                     //GUISklep sklep = new GUISklep();
-                }else{
+                }else if(sprzedawca.czyIstniejeHaslo(haslo,login))
+                {
+                    JOptionPane.showMessageDialog(null,"POMYŚLNIE SIĘ ZALOGOWANO","LOGOWANIE", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                    //tutaj otwiera się okno dla sprzedawcy
+                }
+                else{
+
+
                     JOptionPane.showMessageDialog(null,"NIE UDAŁO SIĘ ZALOGOWAĆ","BŁĄD LOGOWANIA", JOptionPane.ERROR_MESSAGE);
 
                 }

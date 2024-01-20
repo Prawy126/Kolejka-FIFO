@@ -13,8 +13,8 @@ import java.util.*;
 public class Main {
     public static void main(String[] args)
     {
-        Zamowienia zamowienia = new Zamowienia("Ser",2,3,3.2f);
-        Klient klient = new Klient("Marek","Markowski",zamowienia,"login","haslo", 12314);
+        //Zamowienia zamowienia = new Zamowienia("Ser",2,3,3.2f);
+        //Klient klient = new Klient("Marek","Markowski",zamowienia,"login","haslo", 12314);
         /*
         ArrayList<Zamowienia>list = new ArrayList();
         Sprzedawca sprzedawca = new Sprzedawca("Piotr","Nowak","Hasło","login",123);

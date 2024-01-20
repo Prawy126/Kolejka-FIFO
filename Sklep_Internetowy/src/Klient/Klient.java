@@ -25,6 +25,7 @@ public class Klient extends AKlient implements IKlient{
         }
     }
 
+
     @Override
     public float zwrocStanKonta() {
 
@@ -69,6 +70,11 @@ public class Klient extends AKlient implements IKlient{
     public boolean poprawnyLogi(String login) {
         if(this.login.equals(login)) return true;
         else return false;
+    }
+
+    @Override
+    public ArrayList<Zamowienia> zwrocZamowienia() {
+        return list;
     }
 
     public boolean czyKlient(){

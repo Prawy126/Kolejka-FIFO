@@ -82,7 +82,7 @@ public class GUISklep extends JFrame {
                             cena = 10;
                             break;
                     }
-                    Zamowienia zamowienia = new Zamowienia(nazwa,liczba,0,cena);
+                    Zamowienia zamowienia = new Zamowienia(nazwa,liczba,cena);
                     System.out.println(comboBox1.getSelectedItem() + " " + comboBox2.getSelectedItem());
                     klient.dodaZamowienie(zamowienia);
                     klient.wyswieltZamowienia();

@@ -1,5 +1,9 @@
 package Klient;
 
+import Towary.Zamowienia;
+
+import java.util.ArrayList;
+
 public class Sprzedawca implements IKlient{
     private String imie, nazwisko;
     private String haslo, login;
@@ -69,6 +73,11 @@ public class Sprzedawca implements IKlient{
         if(this.login.equals(login))
         return true;
         else return false;
+    }
+
+    @Override
+    public ArrayList<Zamowienia> zwrocZamowienia() {
+        return null;
     }
 
     public boolean czySprzedawca(){
