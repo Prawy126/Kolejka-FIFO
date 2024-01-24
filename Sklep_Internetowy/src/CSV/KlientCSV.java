@@ -198,6 +198,39 @@ public class KlientCSV {
         }
 
 }
+    public void usunKlienta(String login) {
+        List<String> lines = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String savedLogin = parts[2]; // Zmieniłem nazwę zmiennej, żeby uniknąć konfliktu z argumentem
+
+                    // Sprawdź, czy login jest zgodny z loginem do usunięcia
+                    if (!login.equals(savedLogin)) {
+                        lines.add(line);
+                    }
+                } else {
+                    // Jeśli linia ma niewłaściwy format, dodaj ją bez zmian
+                    lines.add(line);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (String updatedLine : lines) {
+                writer.write(updatedLine);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 

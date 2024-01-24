@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import CSV.KlientCSV;
 import Dzwieki.MusicPlayerConsole;
 import Klient.Klient;
 import Towary.MagazynSklapowy;
@@ -23,6 +24,7 @@ public class GUISklep extends JFrame {
     private JButton dodajDoListyButton;
     private JButton cofnijButton;
     private JButton wylogujButton;
+    private JButton usuńKontoButton;
 
 
     public GUISklep(int numerKolejki,Klient klient, MagazynSklapowy magazyn,Klient[] klienci){
@@ -81,10 +83,23 @@ public class GUISklep extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         Random random = new Random();
+                        dispose();
                         Logowanie2 logowanie2 = new Logowanie2(numerKolejki+random.nextInt(5),magazyn,klienci);
                     }
                 });
+                usuńKontoButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Random random = new Random();
+                        Logowanie2 logowanie2 = new Logowanie2(numerKolejki+random.nextInt(4),magazyn,klienci);
+                        KlientCSV klientCSV = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
+                        klientCSV.usunKlienta(klient.podajLogin());
+                        dispose();
+                        muzyka.stopMusic();
+                    }
+                });
     }
+
 
 }
 
