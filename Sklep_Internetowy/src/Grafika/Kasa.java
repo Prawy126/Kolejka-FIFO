@@ -30,7 +30,7 @@ public class Kasa extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600,600);
         this.setVisible(true);
-
+        zapłaćKartąButton.setEnabled(false);
         MusicPlayerConsole muzyka = new MusicPlayerConsole();
         muzyka.playMusicLoop();
         Timer timer = new Timer();
@@ -54,6 +54,7 @@ public class Kasa extends JFrame{
                     });
                 } else {
                     // Zakończ zadanie po zadanym czasie
+                    zapłaćKartąButton.setEnabled(true);
                     Kolejka.setText("Teraz twoja kolej \t Do zapłaty: " + klient.ileDoZaplaty());
                     timer.cancel();
                     System.out.println(klient.ileDoZaplaty());
@@ -73,12 +74,22 @@ public class Kasa extends JFrame{
         zapłaćKartąButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(klient.zwrocStanKonta()>=klient.ileDoZaplaty()){
-                    JOptionPane.showMessageDialog(null,"Transakcja udana","Wszystko poszło pomyślnie",JOptionPane.INFORMATION_MESSAGE);
+                if(klient.zwrocStanKonta()>=klient.ileDoZaplaty()) {
+                    JOptionPane.showMessageDialog(null, "Transakcja udana", "Wszystko poszło pomyślnie", JOptionPane.INFORMATION_MESSAGE);
                     klient.odejmijZKonta(klient.ileDoZaplaty());
-                    KlientCSV.updateKlientAccount(klient.podajLogin(),klient.podajZawartoscKonta(),"src\\CSV\\BazaDanychKlientow.csv");
-                    JOptionPane.showMessageDialog(null,"Aktualny stan konta " + klient.zwrocStanKonta(),"Ile na koncie", JOptionPane.INFORMATION_MESSAGE);
-                }else{
+                    KlientCSV.updateKlientAccount(klient.podajLogin(), klient.podajZawartoscKonta(), "src\\CSV\\BazaDanychKlientow.csv");
+                    JOptionPane.showMessageDialog(null, "Aktualny stan konta " + klient.zwrocStanKonta(), "Ile na koncie", JOptionPane.INFORMATION_MESSAGE);
+                    zapłaćKartąButton.setEnabled(false);
+                    int decyzja = JOptionPane.showConfirmDialog(null,"Czy chcesz jeszcze cos kupić jeszcze","tak",JOptionPane.YES_NO_OPTION);
+                    if(decyzja==JOptionPane.YES_OPTION){
+                        muzyka.stopMusic();
+                        dispose();
+
+                        GUISklep guiSklep = new GUISklep(random.nextInt(20),klient,magazynSklapowy,klienci);
+                    }else {
+                        dispose();
+                    }
+                          }else{
                     JOptionPane.showMessageDialog(null,"Za mało pieniędzy na koncie","Transakcja nie udana",JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -102,4 +113,5 @@ public class Kasa extends JFrame{
         });
 
     }
+
 }

@@ -24,7 +24,7 @@ public class Logowanie2 extends JFrame{
         super("Logowanie");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(Wyswietlacz);
-        this.setSize(250,250);
+        this.setSize(330,250);
         this.setVisible(true);
 
         zalogujSięButton.addActionListener(new ActionListener() {

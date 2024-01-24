@@ -25,27 +25,14 @@ public class Praca extends JFrame{
     private JTable table1;
     private JButton kolejnyKlientButton;
     public static int currentIndex = 0; // Ustalamy początkowy indeks klienta
-    public static void main(String[] args) {
-        ArrayList<Zamowienia> towary = new ArrayList<>();
-        towary.add(new Zamowienia("ser",12.3f, 21));
-        towary.add(new Zamowienia("ser2",12.3f,32));
-        towary.add(new Zamowienia("ser3",12.3f,2));
-        Klient[] klient = {new Klient("tak","nie",null,"login","Haslo",2313.0f),new Klient("tak","nie",null,"login","Haslo",312343.312f)};
-        MagazynSklapowy magazyn = new MagazynSklapowy(towary);
-        klient[0].dodaZamowienie(towary.get(1));
-        klient[0].dodaZamowienie(towary.get(2));
-        klient[1].dodaZamowienie(towary.get(0));
-        Sprzedawca sprzedawca = new Sprzedawca("Imię","Nazwisko","haslo","login",213.34f);
 
-        Praca kasa = new Praca(klient,sprzedawca);
-
-    }
     public Praca(Klient[] klient, Sprzedawca sprzedawca) {
         super("Sklep internetowy");
         this.setContentPane(Wyswietlacz);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 600);
         this.setVisible(true);
+        kolejnyKlientButton.setEnabled(false);
         MusicPlayerConsole muzyka = new MusicPlayerConsole();
         muzyka.playMusicLoop();
         ImieNazwisko.setText(sprzedawca.zwrocImie());
@@ -85,6 +72,7 @@ public class Praca extends JFrame{
                 }else{
                     JOptionPane.showMessageDialog(null,"Za mało pieniędzy na koncie","Transakcja zakończona błędem",JOptionPane.ERROR_MESSAGE);
                 }
+                kolejnyKlientButton.setEnabled(true);
             }
         });
         kolejnyKlientButton.addActionListener(new ActionListener() {
@@ -121,6 +109,7 @@ public class Praca extends JFrame{
                     skasujKlientaButton.setEnabled(false);
                     liczIleDoZapłatyButton.setEnabled(false);
                 }
+                kolejnyKlientButton.setEnabled(false);
 
             }
         });
