@@ -91,11 +91,16 @@ public class GUISklep extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         Random random = new Random();
-                        Logowanie2 logowanie2 = new Logowanie2(numerKolejki+random.nextInt(4),magazyn,klienci);
+
                         KlientCSV klientCSV = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
-                        klientCSV.usunKlienta(klient.podajLogin());
-                        dispose();
-                        muzyka.stopMusic();
+                        int czy = JOptionPane.showConfirmDialog(null,"CZY NA PEWNO CHCSZ USUNĄĆ SOWJE KONTO?","USUWANIE KONTA",JOptionPane.YES_NO_OPTION);
+                        if(czy==JOptionPane.YES_OPTION){
+                            klientCSV.usunKlienta(klient.podajLogin());
+                            dispose();
+                            muzyka.stopMusic();
+                            Logowanie2 logowanie2 = new Logowanie2(numerKolejki+random.nextInt(4),magazyn,klienci);
+                        }
+
                     }
                 });
     }
