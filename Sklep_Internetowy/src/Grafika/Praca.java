@@ -35,7 +35,7 @@ public class Praca extends JFrame{
         kolejnyKlientButton.setEnabled(false);
         MusicPlayerConsole muzyka = new MusicPlayerConsole();
         muzyka.playMusicLoop();
-        ImieNazwisko.setText(sprzedawca.zwrocImie());
+        ImieNazwisko.setText(sprzedawca.zwrocImie() + " " + sprzedawca.zwrocNazwisko() );
         liczIleDoZapłatyButton.setEnabled(true);
         ArrayList<Zamowienia> paragon = klient[currentIndex].zwrocZamowienia();
         Object[][] data = new Object[paragon.size()][3];
