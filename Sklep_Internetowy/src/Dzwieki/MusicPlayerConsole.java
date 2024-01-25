@@ -13,7 +13,7 @@ public class MusicPlayerConsole {
 
     public void playMusicLoop() {
         try {
-            File musicPath = new File("src\\Dzwieki\\293-front-music.wav");
+            File musicPath = new File("src\\Dzwieki\\muzyka.wav");
             if (musicPath.exists()) {
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
                 clip = AudioSystem.getClip();

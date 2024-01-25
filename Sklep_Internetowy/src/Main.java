@@ -1,15 +1,9 @@
 import CSV.KlientCSV;
-import Dzwieki.MusicPlayerConsole;
 import Grafika.Wejscie;
 import Klient.Klient;
-import Sklep.Sklep;
 import Towary.MagazynSklapowy;
 import Towary.Zamowienia;
-import Klient.Sprzedawca;
-
 import java.util.*;
-
-//klasa Main aktualnie służy do testowania kodu
 
 public class Main {
     public static void main(String[] args)
@@ -40,7 +34,6 @@ public class Main {
         }
         Wejscie wejscie = new Wejscie(magazynSklapowy,klienci);
         wejscie.setVisible(true);
-        //Test2 test2 = new Test2();
 
     }
 }
