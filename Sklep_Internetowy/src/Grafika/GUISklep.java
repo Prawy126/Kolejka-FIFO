@@ -74,7 +74,7 @@ public class GUISklep extends JFrame {
                 cofnijButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        Logowanie2 logowanie2 = new Logowanie2(numerKolejki,magazyn,klienci);
+                        Logowanie logowanie2 = new Logowanie(numerKolejki,magazyn,klienci);
                         dispose();
                         muzyka.stopMusic();
                     }
