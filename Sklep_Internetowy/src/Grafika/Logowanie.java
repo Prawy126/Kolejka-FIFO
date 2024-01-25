@@ -14,10 +14,6 @@ public class Logowanie extends JFrame{
     private JLabel numer;
     private JButton zarejestrujSięButton;
 
-    public static void main(String[] args){
-
-    }
-
     public Logowanie(int numer, MagazynSklapowy magazynSklapowy, Klient[] klienci){
         super("Sklep Internetowy");
         this.setContentPane(Ekran);
@@ -25,7 +21,7 @@ public class Logowanie extends JFrame{
         this.setSize(800,500);
         this.setVisible(true);
 
-        this.numer.setText("Aktualnie zajmujesz " + numer + " miejsce w kolejce");
+        this.numer.setText("Zapraszamy na zakupy");
 
         Wyjscie.addActionListener(new ActionListener() {
             @Override

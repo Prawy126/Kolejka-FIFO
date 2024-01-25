@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
+import java.util.Arrays;
 
 public class Rejestracja extends JFrame{
     private JPanel panel1;
@@ -52,32 +53,43 @@ public class Rejestracja extends JFrame{
                 String login = Login.getText();
                 String stanKonta = StanKonta.getText();
 
-                if(haslo.getText().equals(passwordField2)&&!(imie.isEmpty()||login.isEmpty()||nazwisko.isEmpty()||stanKonta.isEmpty())){
-                    float stanKontaf = Float.valueOf(StanKonta.getText());
-                    try{
-                        Klient klient = new Klient(imie,nazwisko,null,login,haslo.getText(),stanKontaf);
+                char[] hasloChars = Haslo.getPassword(); // Pobierz hasło jako tablicę znaków
+                char[] haslo2Chars = passwordField2.getPassword(); // Pobierz drugie hasło jako tablicę znaków
 
+                // Porównaj hasła za pomocą metody Arrays.equals()
+                if (Arrays.equals(hasloChars, haslo2Chars) && (!imie.isEmpty() && !login.isEmpty() && !nazwisko.isEmpty() && !stanKonta.isEmpty())) {
+                    try {
                         KlientCSV odczyt = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
-                        if(odczyt.czyIstniejeKlient(klient)){
-                            JOptionPane.showMessageDialog(null,"Posiadasz już konot","Konto",JOptionPane.INFORMATION_MESSAGE);
-                        }else odczyt.zapiszDoCSV(klient);
-                    }catch (NumberFormatException a) {
-                        System.out.println("Nieprawidłowy format liczby: " + a.getMessage());
-                    }catch (Exception a){
-                        System.out.println("Coś poszło nie tak");
+                        stanKonta = stanKonta.replace(",",".");
+                        float stanKontaf = Float.valueOf(StanKonta.getText());
+                        // Utwórz obiekt Klienta
+                        Klient klient = new Klient(imie, nazwisko, null, login, new String(hasloChars), stanKontaf);
+
+                        // Sprawdź, czy klient już istnieje
+
+                        if (odczyt.czyIstniejeKlient(klient)) {
+                            JOptionPane.showMessageDialog(null, "Posiadasz już konto", "Konto", JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            odczyt.zapiszDoCSV(klient);
+                            JOptionPane.showMessageDialog(null,"Udało się założyć konto","Wszystko poszło pomyslnie",JOptionPane.INFORMATION_MESSAGE);
+                            dispose();
+                            Logowanie2 login2 = new Logowanie2(numerKolejki,magazynSklapowy,klienci);
+                        }
+                    } catch (NumberFormatException a) {
+                        JOptionPane.showMessageDialog(null,"Nieprawidłowy format, kwota na kocnie musi być w systemie 10 i może zawierać jedynie cyfry a nie litery lub znaki specjalne","ERROR",JOptionPane.ERROR_MESSAGE);
+
+                    } catch (Exception a) {
+                        JOptionPane.showMessageDialog(null,"Cos poszło nie tak spróbuj ponownie","ERROR",JOptionPane.WARNING_MESSAGE);
                     }
-                }else if(imie.isEmpty()||login.isEmpty()||nazwisko.isEmpty()||stanKonta.isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Nie uzupłniono wszystkich pól","ERROR",JOptionPane.ERROR_MESSAGE);
-
-                }else {
-                    JOptionPane.showMessageDialog(null,"Hasła nie są takeie same","ERROR",JOptionPane.ERROR_MESSAGE);
+                } else if (imie.isEmpty() || login.isEmpty() || nazwisko.isEmpty() || stanKonta.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Nie uzupełniono wszystkich pól", "ERROR", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hasła nie są takie same", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-
-
-
-
             }
         });
+
+
         Cofnij.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

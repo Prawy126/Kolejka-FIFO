@@ -28,7 +28,7 @@ public class Kasa extends JFrame{
         super("Kasa");
         this.setContentPane(Wyswietlacz);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(600,600);
+        this.setSize(600,300);
         this.setVisible(true);
         zapłaćKartąButton.setEnabled(false);
         MusicPlayerConsole muzyka = new MusicPlayerConsole();
