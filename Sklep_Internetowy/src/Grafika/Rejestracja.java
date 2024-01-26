@@ -57,7 +57,7 @@ public class Rejestracja extends JFrame{
                 char[] haslo2Chars = passwordField2.getPassword(); // Pobierz drugie hasło jako tablicę znaków
 
                 // Porównaj hasła za pomocą metody Arrays.equals()
-                if (Arrays.equals(hasloChars, haslo2Chars) && (!imie.isEmpty() && !login.isEmpty() && !nazwisko.isEmpty() && !stanKonta.isEmpty())) {
+                if (Arrays.equals(hasloChars, haslo2Chars) && (!imie.isEmpty() && !login.isEmpty() && !nazwisko.isEmpty() && !stanKonta.isEmpty() && haslo2Chars.length!=0 && hasloChars.length!=0)) {
                     try {
                         KlientCSV odczyt = new KlientCSV("src\\CSV\\BazaDanychKlientow.csv");
                         stanKonta = stanKonta.replace(",",".");
@@ -81,7 +81,7 @@ public class Rejestracja extends JFrame{
                     } catch (Exception a) {
                         JOptionPane.showMessageDialog(null,"Cos poszło nie tak spróbuj ponownie","ERROR",JOptionPane.WARNING_MESSAGE);
                     }
-                } else if (imie.isEmpty() || login.isEmpty() || nazwisko.isEmpty() || stanKonta.isEmpty()) {
+                } else if (imie.isEmpty() || login.isEmpty() || nazwisko.isEmpty() || stanKonta.isEmpty()||hasloChars.length==0||haslo2Chars.length==0) {
                     JOptionPane.showMessageDialog(null, "Nie uzupełniono wszystkich pól", "ERROR", JOptionPane.ERROR_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(null, "Hasła nie są takie same", "ERROR", JOptionPane.ERROR_MESSAGE);
