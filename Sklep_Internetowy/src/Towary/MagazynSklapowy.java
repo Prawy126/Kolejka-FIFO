@@ -40,6 +40,10 @@ public class MagazynSklapowy implements IMagazyn {
                     z.ustawIlosc(z.iloscTowaru() - nazwaProduktu.iloscTowaru());
 
                 }
+                else if(z.iloscTowaru() > nazwaProduktu.iloscTowaru()){
+                    iterator.remove();
+                    System.out.println("Produkty się skończyły");
+                }
             }
 
         }
