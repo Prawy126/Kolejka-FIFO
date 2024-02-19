@@ -49,4 +49,4 @@ Projekt realizuje funkcjonalność zarządzania sklepem, obsługując zarówno s
 - Java Homework Projects – 11th Edition: A JFC GUI Swing Tutorial, Philip Conrod, Lou Tylee
 - Java: Java Front End Programming, Andy Vickler
 - [Java GUI](https://www.guru99.com/java-swing-gui.html)
-- [Obsługa muzyki w Java](https://www.baeld```
+- [Obsługa muzyki w Java](https://4programmers.net/Forum/Newbie/246891-odtwarzanie_muzyki_w_javie)
